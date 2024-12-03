@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchPosts, addPost } from "../../network/postsApis";
+import { fetchPosts, addPost ,deletePost} from "../../network/postsApis";
 export const postsSlice = createSlice({
   name: "posts",
   initialState: {
@@ -18,6 +18,9 @@ export const postsSlice = createSlice({
     .addCase(addPost.fulfilled, (state, action) => {
       state.posts.push(action.payload);
     })
+    .addCase(deletePost.fulfilled, (state, action) => {
+      state.posts = state.posts.filter((post) => post.id !== action.payload); // Remove deleted post
+    });
   },
 });
 export { fetchPosts, addPost}; 

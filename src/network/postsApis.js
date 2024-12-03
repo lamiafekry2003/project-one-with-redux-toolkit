@@ -17,3 +17,8 @@ export const addPost = createAsyncThunk("posts/addPost", async (postInfo) => {
   );
   return response.data;
 });
+// delete
+export const deletePost = createAsyncThunk("posts/deletePost", async (postId) => {
+  await axios.delete(`https://jsonplaceholder.typicode.com/posts/${postId}`);
+  return postId; // Return the ID of the deleted post
+});
